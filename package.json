@@ -1,0 +1,29 @@
+{
+  "name": "tsoa-template",
+  "version": "1.0.0",
+  "main": "dist/api/app.js",
+  "author": "ryosantouchh <kittitat.suntimak@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "tsoa": "./node_modules/.bin/tsoa",
+    "dev": "yarn nodemon -- -x \"npm run swagger && ts-node ./src/api/app.ts\"",
+    "nodemon": "./node_modules/.bin/nodemon",
+    "swagger": "yarn tsoa spec-and-routes"
+  },
+  "dependencies": {
+    "@tsoa/runtime": "^7.0.0-alpha.0",
+    "express": "^5.2.1",
+    "http-status-codes": "^2.3.0",
+    "swagger-ui-express": "^5.0.1",
+    "tsoa": "^7.0.0-alpha.0",
+    "tsyringe": "^4.10.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.5.0",
+    "@types/swagger-ui-express": "^4.1.8",
+    "nodemon": "^3.1.14",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.2"
+  }
+}

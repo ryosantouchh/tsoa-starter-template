@@ -1,0 +1,10 @@
+{
+  "watch": ["src"],
+  "ext": "ts",
+  "ignore": [
+    "build",
+    "dist",
+    "node_modules",
+    "./src/api/routes.ts"
+  ]
+}
