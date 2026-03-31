@@ -1,14 +1,14 @@
 {
-  "entryFile": "src/api/app.ts",
+  "entryFile": "src/entry/api/app.ts",
   "noImplicitAdditionalProperties": "throw-on-extras",
-  "controllerPathGlobs": ["src/api/controllers/**/*.controller.ts"],
+  "controllerPathGlobs": ["src/entry/api/controllers/**/*.controller.ts"],
   "spec": {
     "outputDirectory": "./",
     "specVersion": 3,
     "basePath": "/api"
   },
   "routes": {
-    "routesDir": "./src/api/",
+    "routesDir": "./src/entry/api/",
     "middleware": "express",
     "iocModule": "src/container.ts"
   }

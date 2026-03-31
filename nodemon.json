@@ -5,6 +5,6 @@
     "build",
     "dist",
     "node_modules",
-    "./src/api/routes.ts"
+    "./src/entry/api/routes.ts"
   ]
 }

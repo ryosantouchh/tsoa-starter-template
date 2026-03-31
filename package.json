@@ -1,12 +1,12 @@
 {
   "name": "tsoa-starter-template",
   "version": "1.0.0",
-  "main": "dist/api/app.js",
+  "main": "dist/entry/api/app.js",
   "author": "ryosantouchh <kittitat.suntimak@gmail.com>",
   "license": "MIT",
   "scripts": {
     "tsoa": "./node_modules/.bin/tsoa",
-    "dev": "npm run nodemon -- -x \"npm run swagger && ts-node ./src/api/app.ts\"",
+    "dev": "npm run nodemon -- -x \"npm run swagger && ts-node ./src/entry/api/app.ts\"",
     "nodemon": "./node_modules/.bin/nodemon",
     "swagger": "npm run tsoa spec-and-routes"
   },

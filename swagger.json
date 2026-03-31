@@ -10,7 +10,7 @@
 		"securitySchemes": {}
 	},
 	"info": {
-		"title": "tsoa-template",
+		"title": "tsoa-starter-template",
 		"version": "1.0.0",
 		"license": {
 			"name": "MIT"
