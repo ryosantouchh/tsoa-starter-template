@@ -8,12 +8,16 @@
     "tsoa": "./node_modules/.bin/tsoa",
     "dev": "npm run nodemon -- -x \"npm run swagger && ts-node ./src/entry/api/app.ts\"",
     "nodemon": "./node_modules/.bin/nodemon",
-    "swagger": "npm run tsoa spec-and-routes"
+    "swagger": "npm run tsoa spec-and-routes",
+    "db:up": "./sh/db-up.sh"
   },
   "dependencies": {
     "@tsoa/runtime": "^7.0.0-alpha.0",
+    "@types/pg": "^8.20.0",
     "express": "^5.2.1",
     "http-status-codes": "^2.3.0",
+    "kysely": "^0.28.15",
+    "pg": "^8.20.0",
     "swagger-ui-express": "^5.0.1",
     "tsoa": "^7.0.0-alpha.0",
     "tsyringe": "^4.10.0"
@@ -22,6 +26,7 @@
     "@types/express": "^5.0.6",
     "@types/node": "^25.5.0",
     "@types/swagger-ui-express": "^4.1.8",
+    "kysely-codegen": "^0.20.0",
     "nodemon": "^3.1.14",
     "ts-node": "^10.9.2",
     "typescript": "^6.0.2"
