@@ -31,20 +31,23 @@ export function RegisterRoutes(app: Router) {
 
 
     
-        const argsUsersController_getUser: Record<string, TsoaRoute.ParameterSchema> = {
-                res: {"in":"res","name":"200","required":true,"dataType":"string"},
+        const argsUsersController_getUserById: Record<string, TsoaRoute.ParameterSchema> = {
+                res: {"in":"res","name":"200","required":true,"dataType":"any"},
+                res404: {"in":"res","name":"404","required":true,"dataType":"any"},
+                res500: {"in":"res","name":"500","required":true,"dataType":"any"},
+                userId: {"in":"path","name":"userId","required":true,"dataType":"string"},
         };
         app.get('/users/:userId',
             ...(fetchMiddlewares<RequestHandler>(UsersController)),
-            ...(fetchMiddlewares<RequestHandler>(UsersController.prototype.getUser)),
+            ...(fetchMiddlewares<RequestHandler>(UsersController.prototype.getUserById)),
 
-            async function UsersController_getUser(request: ExRequest, response: ExResponse, next: any) {
+            async function UsersController_getUserById(request: ExRequest, response: ExResponse, next: any) {
 
             // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 
             let validatedArgs: any[] = [];
             try {
-                validatedArgs = templateService.getValidatedArgs({ args: argsUsersController_getUser, request, response });
+                validatedArgs = templateService.getValidatedArgs({ args: argsUsersController_getUserById, request, response });
 
                 const container: IocContainer = typeof iocContainer === 'function' ? (iocContainer as IocContainerFactory)(request) : iocContainer;
 
@@ -54,7 +57,7 @@ export function RegisterRoutes(app: Router) {
                 }
 
               await templateService.apiHandler({
-                methodName: 'getUser',
+                methodName: 'getUserById',
                 controller,
                 response,
                 next,

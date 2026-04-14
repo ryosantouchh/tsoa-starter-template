@@ -23,21 +23,44 @@
 	"paths": {
 		"/users/{userId}": {
 			"get": {
-				"operationId": "GetUser",
+				"operationId": "GetUserById",
 				"responses": {
 					"200": {
 						"description": "",
 						"content": {
 							"application/json": {
-								"schema": {
-									"type": "string"
-								}
+								"schema": {}
+							}
+						}
+					},
+					"404": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					},
+					"500": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {}
 							}
 						}
 					}
 				},
 				"security": [],
-				"parameters": []
+				"parameters": [
+					{
+						"in": "path",
+						"name": "userId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
 			}
 		}
 	},
