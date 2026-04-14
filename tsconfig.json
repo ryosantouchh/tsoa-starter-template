@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
     "outDir": "./dist",
-    "rootDir": "./src",
-    "baseUrl": ".",
+    "rootDir": ".",
+    "baseUrl": "./src",
     "module": "nodenext",
     "moduleResolution": "nodenext",
     "target": "es2022",
@@ -27,7 +27,27 @@
     "skipLibCheck": true,
     "isolatedModules": true,
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "paths": {
+      "@controller/*": [
+        "entry/api/controllers/*"
+      ],
+      "@domain/*": [
+        "core/domain/*"
+      ],
+      "@entities/*": [
+        "core/entities/*"
+      ],
+      "@repositories/*": [
+        "core/repositories/*"
+      ],
+      "@infra/*": [
+        "infra/*"
+      ],
+      "@shared/*": [
+        "shared/*"
+      ]
+    }
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist", "build"]
