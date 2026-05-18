@@ -5,6 +5,7 @@
   "author": "ryosantouchh <kittitat.suntimak@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "build": "tsc",
     "tsoa": "./node_modules/.bin/tsoa",
     "dev": "npm run nodemon -- -x \"npm run swagger && ts-node -r tsconfig-paths/register ./src/entry/api/app.ts\"",
     "nodemon": "./node_modules/.bin/nodemon",
