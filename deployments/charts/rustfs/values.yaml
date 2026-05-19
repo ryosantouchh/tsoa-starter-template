@@ -1,0 +1,23 @@
+namespace: api-app-local-namespace
+environment: development
+ 
+rustfs:
+  image:
+    repository: rustfs/rustfs
+    tag: latest
+    pullPolicy: IfNotPresent
+  storage: 5Gi
+  resources:
+    requests:
+      memory: "512Mi"
+      cpu: "250m"
+    limits:
+      memory: "1Gi"
+      cpu: "500m"
+  ingress:
+    enabled: true
+    className: nginx
+    host: s3.local
+  secret:
+    accessKey: ""
+    secretKey: ""

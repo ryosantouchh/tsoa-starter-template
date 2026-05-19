@@ -11,20 +11,22 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - tsoa-starter-template-volume:/var/lib/postgresql/data
+      - tsoa-starter-template-db-volume:/var/lib/postgresql/data
 
-  # s3:
-  #   image: quay.io/minio/minio
-  #   container_name: tsoa-starter-template-minio
-  #   ports:
-  #     - "9000:9000"
-  #     - "9001:9001"
-  #   environment:
-  #     MINIO_ROOT_USER: admin
-  #     MINIO_ROOT_PASSWORD: password
-  #   volumes:
-  #     - tsoa-starter-template-volume:/data
-  #   command: server /data --console-address ":9001"
+  s3:
+    image: rustfs/rustfs:latest
+    container_name: tsoa-starter-template-rustfs
+    restart: always
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      RUSTFS_ACCESS_KEY: admin
+      RUSTFS_SECRET_KEY: password
+    volumes:
+      - tsoa-starter-template-s3-volume:/data
+    command: /data
 
 volumes:
-  tsoa-starter-template-volume:
+  tsoa-starter-template-db-volume:
+  tsoa-starter-template-s3-volume:

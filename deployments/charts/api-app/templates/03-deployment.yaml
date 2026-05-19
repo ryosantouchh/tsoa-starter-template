@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-deploy
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: {{ .Values.apiApp.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+      terminationGracePeriodSeconds: 30
+      containers:
+        - name: api-container
+          image: {{ .Values.apiApp.image.repository }}:{{ .Values.image.tag }}
+          imagePullPolicy: {{ .Values.apiApp.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.apiApp.port }}
+              name: http
+          envFrom:
+            - secretRef:
+                name: {{ .Release.Name }}-secret
+            - configMapRef:
+                name: {{ .Release.Name }}-config
+          resources:
+            {{- toYaml .Values.apiApp.resources | nindent 12 }}
+          # livenessProbe:
+          #   httpGet:
+          #     path: /health
+          #     port: {{ .Values.port }}
+          #   initialDelaySeconds: 15
+          #   periodSeconds: 20
+          #   failureThreshold: 3
+          # readinessProbe:
+          #   httpGet:
+          #     path: /health
+          #     port: {{ .Values.port }}
+          #   initialDelaySeconds: 5
+          #   periodSeconds: 10
+          #   failureThreshold: 3
+          # securityContext:
+          #   allowPrivilegeEscalation: false
+          #   readOnlyRootFilesystem: true
+          #   capabilities:
+          #     drop: ["ALL"]

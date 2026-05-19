@@ -1,0 +1,29 @@
+namespace: api-app-local-namespace
+environment: development
+
+apiApp:
+  image:
+    repository: ryosantouchh/api-app
+    tag: dev
+    pullPolicy: Always
+  replicas: 1
+  port: 3000
+  resources:
+    requests:
+      memory: "128Mi"
+      cpu: "100m"
+    limits:
+      memory: "256Mi"
+      cpu: "250m"
+  ingress:
+    enabled: true
+    className: nginx
+    host: api.local
+  config:
+    NODE_ENV: development
+    PORT: "3000"
+  secret:
+    databaseUrl: ""
+    s3Endpoint: ""
+    s3AccessKey: ""
+    s3SecretKey: ""
