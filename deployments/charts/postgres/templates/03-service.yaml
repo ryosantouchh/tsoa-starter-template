@@ -9,8 +9,8 @@ spec:
     app: {{ .Release.Name }}-postgres
   ports:
     - name: postgres
-      port: {{ .Values.postgres.port }}
-      targetPort: {{ .Values.postgres.port }}
+      port: {{ .Values.port }}
+      targetPort: {{ .Values.port }}
 ---
 apiVersion: v1
 kind: Service
@@ -22,6 +22,6 @@ spec:
     app: {{ .Release.Name }}-postgres
   ports:
     - name: postgres
-      port: {{ .Values.postgres.port }}
-      targetPort: {{ .Values.postgres.port }}
+      port: {{ .Values.port }}
+      targetPort: {{ .Values.port }}
   type: ClusterIP

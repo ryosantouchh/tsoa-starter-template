@@ -17,12 +17,12 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
         - name: rustfs
-          image: {{ .Values.rustfs.image.repository }}:{{ .Values.rustfs.image.tag }}
-          imagePullPolicy: {{ .Values.rustfs.image.pullPolicy }}
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - containerPort: {{ .Values.rustfs.port }}
+            - containerPort: {{ .Values.port }}
               name: api
-            - containerPort: {{ .Values.rustfs.consolePort }}
+            - containerPort: {{ .Values.consolePort }}
               name: console
           env:
             - name: RUSTFS_ROOT_USER
@@ -38,9 +38,9 @@ spec:
             - name: RUSTFS_VOLUMES
               value: "/data"
             - name: RUSTFS_ADDRESS
-              value: ":{{ .Values.rustfs.port }}"
+              value: ":{{ .Values.port }}"
             - name: RUSTFS_CONSOLE_ADDRESS
-              value: ":{{ .Values.rustfs.consolePort }}"
+              value: ":{{ .Values.consolePort }}"
           volumeMounts:
             - name: data
               mountPath: /data
@@ -59,7 +59,7 @@ spec:
           #   periodSeconds: 10
           #   failureThreshold: 3
           resources:
-            {{- toYaml .Values.rustfs.resources | nindent 12 }}
+            {{- toYaml .Values.resources | nindent 12 }}
   volumeClaimTemplates:
     - metadata:
         name: data
@@ -68,7 +68,7 @@ spec:
           - ReadWriteOnce
         resources:
           requests:
-            storage: {{ .Values.rustfs.persistence.size }}
-        {{- if .Values.rustfs.persistence.storageClass }}
-        storageClassName: {{ .Values.rustfs.persistence.storageClass }}
+            storage: {{ .Values.persistence.size }}
+        {{- if .Values.persistence.storageClass }}
+        storageClassName: {{ .Values.persistence.storageClass }}
         {{- end }}

@@ -1,24 +1,22 @@
 namespace: ""
 environment: ""
-
-rustfs:
-  image:
-    repository: rustfs/rustfs
-    tag: latest
-    pullPolicy: IfNotPresent
-  port: 9000
-  consolePort: 9001
-  resources:
-    requests:
-      memory: "128Mi"
-      cpu: "100m"
-    limits:
-      memory: "256Mi"
-      cpu: "250m"
-  persistence:
-    enabled: true
-    size: 5Gi
-    storageClass: ""
-  secret:
-    accessKey: ""
-    secretKey: ""
+image:
+  repository: rustfs/rustfs
+  tag: latest
+  pullPolicy: IfNotPresent
+port: 9000
+consolePort: 9001
+resources:
+  requests:
+    memory: "128Mi"
+    cpu: "100m"
+  limits:
+    memory: "256Mi"
+    cpu: "250m"
+persistence:
+  enabled: true
+  size: 5Gi
+  storageClass: ""
+secret:
+  accessKey: ""
+  secretKey: ""

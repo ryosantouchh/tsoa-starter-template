@@ -9,11 +9,11 @@ spec:
     app: {{ .Release.Name }}-rustfs
   ports:
     - name: api
-      port: {{ .Values.rustfs.port }}
-      targetPort: {{ .Values.rustfs.port }}
+      port: {{ .Values.port }}
+      targetPort: {{ .Values.port }}
     - name: console
-      port: {{ .Values.rustfs.consolePort }}
-      targetPort: {{ .Values.rustfs.consolePort }}
+      port: {{ .Values.consolePort }}
+      targetPort: {{ .Values.consolePort }}
 ---
 apiVersion: v1
 kind: Service
@@ -25,9 +25,9 @@ spec:
     app: {{ .Release.Name }}-rustfs
   ports:
     - name: api
-      port: {{ .Values.rustfs.port }}
-      targetPort: {{ .Values.rustfs.port }}
+      port: {{ .Values.port }}
+      targetPort: {{ .Values.port }}
     - name: console
-      port: {{ .Values.rustfs.consolePort }}
-      targetPort: {{ .Values.rustfs.consolePort }}
+      port: {{ .Values.consolePort }}
+      targetPort: {{ .Values.consolePort }}
   type: ClusterIP

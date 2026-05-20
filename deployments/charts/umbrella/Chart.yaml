@@ -11,7 +11,7 @@ dependencies:
     condition: api-app.enabled
 
   - name: postgres
-    version: "18"
+    version: "0.1.0"
     repository: "file://../postgres"
     condition: postgresql.enabled
 

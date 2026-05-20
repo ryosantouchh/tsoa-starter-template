@@ -4,7 +4,7 @@ metadata:
   name: {{ .Release.Name }}-deploy
   namespace: {{ .Values.namespace }}
 spec:
-  replicas: {{ .Values.apiApp.replicas }}
+  replicas: {{ .Values.replicas }}
   selector:
     matchLabels:
       app: {{ .Release.Name }}
@@ -20,10 +20,10 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
         - name: api-container
-          image: {{ .Values.apiApp.image.repository }}:{{ .Values.apiApp.image.tag }}
-          imagePullPolicy: {{ .Values.apiApp.image.pullPolicy }}
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - containerPort: {{ .Values.apiApp.port }}
+            - containerPort: {{ .Values.port }}
               name: http
           envFrom:
             - configMapRef:
@@ -31,18 +31,18 @@ spec:
             - secretRef:
                 name: {{ .Release.Name }}-secret
           resources:
-            {{- toYaml .Values.apiApp.resources | nindent 12 }}
+            {{- toYaml .Values.resources | nindent 12 }}
           # livenessProbe:
           #   httpGet:
           #     path: /health
-          #     port: {{ .Values.apiApp.port }}
+          #     port: {{ .Values.port }}
           #   initialDelaySeconds: 15
           #   periodSeconds: 20
           #   failureThreshold: 3
           # readinessProbe:
           #   httpGet:
           #     path: /health
-          #     port: {{ .Values.apiApp.port }}
+          #     port: {{ .Values.port }}
           #   initialDelaySeconds: 5
           #   periodSeconds: 10
           #   failureThreshold: 3

@@ -1,26 +1,23 @@
 namespace: ""
-
 environment: ""
-
-postgres:
-  image:
-    repository: postgres
-    tag: "18"
-    pullPolicy: IfNotPresent
-  replicas: 1
-  port: 5432
-  resources:
-    requests:
-      memory: "256Mi"
-      cpu: "100m"
-    limits:
-      memory: "512Mi"
-      cpu: "250m"
-  persistence:
-    enabled: true
-    size: 2Gi
-    storageClass: ""
-  secret:
-    database: ""
-    username: ""
-    password: ""
+image:
+  repository: postgres
+  tag: "18"
+  pullPolicy: IfNotPresent
+replicas: 1
+port: 5432
+resources:
+  requests:
+    memory: "256Mi"
+    cpu: "100m"
+  limits:
+    memory: "512Mi"
+    cpu: "250m"
+persistence:
+  enabled: true
+  size: 2Gi
+  storageClass: ""
+secret:
+  database: ""
+  username: ""
+  password: ""

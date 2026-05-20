@@ -1,0 +1,8 @@
+releases:
+  - name: tsoa-poc
+    chart: charts/umbrella
+    namespace: api-app-local-namespace
+    createNamespace: true
+    values:
+      - environment/local/values.yaml
+      - environment/local/secret.yaml

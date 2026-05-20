@@ -1,29 +1,27 @@
 namespace: ""
 environment: ""
-
-apiApp:
-  image:
-    repository: ryosantouchh/api-app
-    tag: latest
-    pullPolicy: IfNotPresent
-  replicas: 1
-  port: 3000
-  resources:
-    requests:
-      memory: "128Mi"
-      cpu: "100m"
-    limits:
-      memory: "256Mi"
-      cpu: "250m"
-  ingress:
-    enabled: false
-    className: nginx
-    host: ""
-  config:
-    NODE_ENV: ""
-    PORT: "3000"
-  secret:
-    databaseUrl: ""
-    s3Endpoint: ""
-    s3AccessKey: ""
-    s3SecretKey: ""
+image:
+  repository: ryosantouchh/api-app
+  tag: latest
+  pullPolicy: IfNotPresent
+replicas: 1
+port: 3000
+resources:
+  requests:
+    memory: "128Mi"
+    cpu: "100m"
+  limits:
+    memory: "256Mi"
+    cpu: "250m"
+ingress:
+  enabled: false
+  className: nginx
+  host: ""
+config:
+  NODE_ENV: ""
+  PORT: "3000"
+secret:
+  databaseUrl: ""
+  s3Endpoint: ""
+  s3AccessKey: ""
+  s3SecretKey: ""

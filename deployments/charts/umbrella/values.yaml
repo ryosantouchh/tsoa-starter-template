@@ -1,5 +1,5 @@
-namespace: ""
-environment: ""
+namespace: api-app-local-namespace
+environment: development
 
 apiApp:
   enabled: true
@@ -33,7 +33,7 @@ postgres:
   enabled: true
   image:
     repository: postgres
-    tag: "16"
+    tag: "18"
     pullPolicy: IfNotPresent
   replicas: 1
   port: 5432

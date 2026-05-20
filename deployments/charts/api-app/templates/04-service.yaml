@@ -8,5 +8,5 @@ spec:
     app: {{ .Release.Name }}
   ports:
     - port: 80
-      targetPort: {{ .Values.apiApp.port }}
+      targetPort: {{ .Values.port }}
   type: ClusterIP

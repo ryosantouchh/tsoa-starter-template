@@ -1,7 +1,10 @@
-namespace: api-app-local-namespace
-environment: development
+global:
+  namespace: api-app-local-namespace
+  environment: development
 
-apiApp:
+api-app:
+  namespace: api-app-local-namespace
+  environment: development
   image:
     tag: dev
     pullPolicy: Always
@@ -10,3 +13,9 @@ apiApp:
     host: api.localhost
   config:
     NODE_ENV: development
+
+postgres:
+  namespace: api-app-local-namespace
+
+rustfs:
+  namespace: api-app-local-namespace
