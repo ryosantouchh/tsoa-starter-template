@@ -9,6 +9,6 @@ swagger.json
 deployments/environment/**/secret.yaml
 
 deployments/charts/umbrella/charts/
-deployments/charts/**/charts/
+deployments/charts/umbrella/Chart.lock
 
 .helm/
