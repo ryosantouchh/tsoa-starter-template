@@ -1,11 +1,11 @@
-namespace: api-app-local-namespace
-environment: development
+namespace: ""
+environment: ""
 
 apiApp:
   image:
     repository: ryosantouchh/api-app
-    tag: dev
-    pullPolicy: Always
+    tag: latest
+    pullPolicy: IfNotPresent
   replicas: 1
   port: 3000
   resources:
@@ -16,11 +16,11 @@ apiApp:
       memory: "256Mi"
       cpu: "250m"
   ingress:
-    enabled: true
+    enabled: false
     className: nginx
-    host: api.local
+    host: ""
   config:
-    NODE_ENV: development
+    NODE_ENV: ""
     PORT: "3000"
   secret:
     databaseUrl: ""

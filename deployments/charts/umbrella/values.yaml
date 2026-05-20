@@ -1,0 +1,77 @@
+namespace: ""
+environment: ""
+
+apiApp:
+  enabled: true
+  image:
+    repository: ryosantouchh/api-app
+    tag: latest
+    pullPolicy: IfNotPresent
+  replicas: 1
+  port: 3000
+  resources:
+    requests:
+      memory: "128Mi"
+      cpu: "100m"
+    limits:
+      memory: "256Mi"
+      cpu: "250m"
+  ingress:
+    enabled: true
+    className: nginx
+    host: ""
+  config:
+    NODE_ENV: ""
+    PORT: "3000"
+  secret:
+    databaseUrl: ""
+    s3Endpoint: ""
+    s3AccessKey: ""
+    s3SecretKey: ""
+
+postgres:
+  enabled: true
+  image:
+    repository: postgres
+    tag: "16"
+    pullPolicy: IfNotPresent
+  replicas: 1
+  port: 5432
+  resources:
+    requests:
+      memory: "256Mi"
+      cpu: "100m"
+    limits:
+      memory: "512Mi"
+      cpu: "250m"
+  persistence:
+    enabled: true
+    size: 2Gi
+    storageClass: ""
+  secret:
+    database: ""
+    username: ""
+    password: ""
+
+rustfs:
+  enabled: true
+  image:
+    repository: rustfs/rustfs
+    tag: latest
+    pullPolicy: IfNotPresent
+  port: 9000
+  consolePort: 9001
+  resources:
+    requests:
+      memory: "128Mi"
+      cpu: "100m"
+    limits:
+      memory: "256Mi"
+      cpu: "250m"
+  persistence:
+    enabled: true
+    size: 5Gi
+    storageClass: ""
+  secret:
+    accessKey: ""
+    secretKey: ""

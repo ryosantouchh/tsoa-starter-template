@@ -20,29 +20,29 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
         - name: api-container
-          image: {{ .Values.apiApp.image.repository }}:{{ .Values.image.tag }}
+          image: {{ .Values.apiApp.image.repository }}:{{ .Values.apiApp.image.tag }}
           imagePullPolicy: {{ .Values.apiApp.image.pullPolicy }}
           ports:
             - containerPort: {{ .Values.apiApp.port }}
               name: http
           envFrom:
-            - secretRef:
-                name: {{ .Release.Name }}-secret
             - configMapRef:
                 name: {{ .Release.Name }}-config
+            - secretRef:
+                name: {{ .Release.Name }}-secret
           resources:
             {{- toYaml .Values.apiApp.resources | nindent 12 }}
           # livenessProbe:
           #   httpGet:
           #     path: /health
-          #     port: {{ .Values.port }}
+          #     port: {{ .Values.apiApp.port }}
           #   initialDelaySeconds: 15
           #   periodSeconds: 20
           #   failureThreshold: 3
           # readinessProbe:
           #   httpGet:
           #     path: /health
-          #     port: {{ .Values.port }}
+          #     port: {{ .Values.apiApp.port }}
           #   initialDelaySeconds: 5
           #   periodSeconds: 10
           #   failureThreshold: 3

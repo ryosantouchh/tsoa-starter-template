@@ -6,3 +6,9 @@ dist/
 src/api/routes.ts
 swagger.json
 
+**/environment/**/secret.yaml
+
+charts/umbrella/charts/
+charts/**/charts/
+
+.helm/

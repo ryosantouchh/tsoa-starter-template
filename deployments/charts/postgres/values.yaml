@@ -1,24 +1,26 @@
 namespace: ""
+
 environment: ""
 
-rustfs:
+postgres:
   image:
-    repository: rustfs/rustfs
-    tag: latest
+    repository: postgres
+    tag: "18"
     pullPolicy: IfNotPresent
-  port: 9000
-  consolePort: 9001
+  replicas: 1
+  port: 5432
   resources:
     requests:
-      memory: "128Mi"
+      memory: "256Mi"
       cpu: "100m"
     limits:
-      memory: "256Mi"
+      memory: "512Mi"
       cpu: "250m"
   persistence:
     enabled: true
-    size: 5Gi
+    size: 2Gi
     storageClass: ""
   secret:
-    accessKey: ""
-    secretKey: ""
+    database: ""
+    username: ""
+    password: ""

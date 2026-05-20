@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Release.Name }}-rustfs
+  namespace: {{ .Values.namespace }}
+spec:
+  serviceName: {{ .Release.Name }}-rustfs-svc
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-rustfs
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-rustfs
+    spec:
+      terminationGracePeriodSeconds: 30
+      containers:
+        - name: rustfs
+          image: {{ .Values.rustfs.image.repository }}:{{ .Values.rustfs.image.tag }}
+          imagePullPolicy: {{ .Values.rustfs.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.rustfs.port }}
+              name: api
+            - containerPort: {{ .Values.rustfs.consolePort }}
+              name: console
+          env:
+            - name: RUSTFS_ROOT_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-rustfs-secret
+                  key: RUSTFS_ROOT_USER
+            - name: RUSTFS_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-rustfs-secret
+                  key: RUSTFS_ROOT_PASSWORD
+            - name: RUSTFS_VOLUMES
+              value: "/data"
+            - name: RUSTFS_ADDRESS
+              value: ":{{ .Values.rustfs.port }}"
+            - name: RUSTFS_CONSOLE_ADDRESS
+              value: ":{{ .Values.rustfs.consolePort }}"
+          volumeMounts:
+            - name: data
+              mountPath: /data
+          # livenessProbe:
+          #   httpGet:
+          #     path: /minio/health/live
+          #     port: api
+          #   initialDelaySeconds: 30
+          #   periodSeconds: 20
+          #   failureThreshold: 3
+          # readinessProbe:
+          #   httpGet:
+          #     path: /minio/health/ready
+          #     port: api
+          #   initialDelaySeconds: 10
+          #   periodSeconds: 10
+          #   failureThreshold: 3
+          resources:
+            {{- toYaml .Values.rustfs.resources | nindent 12 }}
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: {{ .Values.rustfs.persistence.size }}
+        {{- if .Values.rustfs.persistence.storageClass }}
+        storageClassName: {{ .Values.rustfs.persistence.storageClass }}
+        {{- end }}

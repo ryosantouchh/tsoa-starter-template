@@ -1,0 +1,21 @@
+apiVersion: v2
+name: umbrella
+description: tsoa template stack — api-app (Node), PostgreSQL, RustFS
+type: application
+version: 0.1.0
+
+dependencies:
+  - name: api-app
+    version: "0.1.0"
+    repository: "file://../api-app"
+    condition: api-app.enabled
+
+  - name: postgres
+    version: "18"
+    repository: "file://../postgres"
+    condition: postgresql.enabled
+
+  - name: rustfs
+    version: "0.1.0"
+    repository: "file://../rustfs"
+    condition: rustfs.enabled

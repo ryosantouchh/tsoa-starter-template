@@ -4,5 +4,5 @@ metadata:
   name: {{ .Release.Name }}-config
   namespace: {{ .Values.namespace }}
 data:
-  NODE_ENV: {{ .Values.apiApp.config.NODE_ENV }}
+  NODE_ENV: {{ .Values.apiApp.config.NODE_ENV | quote }}
   PORT: {{ .Values.apiApp.config.PORT | quote }}
