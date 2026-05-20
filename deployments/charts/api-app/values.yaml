@@ -22,6 +22,11 @@ config:
   PORT: "3000"
 secret:
   databaseUrl: ""
+  databaseUsername: ""
+  databasePassword: ""
+  databaseHost: ""
+  databasePort: ""
+  databaseName: ""
   s3Endpoint: ""
   s3AccessKey: ""
   s3SecretKey: ""
