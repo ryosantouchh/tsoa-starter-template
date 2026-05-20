@@ -16,12 +16,16 @@
     "migrate": "npm run migrate:only && npm run migrate:type"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.1050.0",
+    "@aws-sdk/s3-request-presigner": "^3.1050.0",
     "@tsoa/runtime": "^7.0.0-alpha.0",
+    "@types/multer": "^2.1.0",
     "@types/pg": "^8.20.0",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "http-status-codes": "^2.3.0",
     "kysely": "^0.28.15",
+    "multer": "^2.1.1",
     "pg": "^8.20.0",
     "reflect-metadata": "^0.2.2",
     "swagger-ui-express": "^5.0.1",

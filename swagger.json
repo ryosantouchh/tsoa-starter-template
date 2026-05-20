@@ -6,7 +6,36 @@
 		"parameters": {},
 		"requestBodies": {},
 		"responses": {},
-		"schemas": {},
+		"schemas": {
+			"GetMediaUrlByIdQueryResponse": {
+				"properties": {
+					"url": {
+						"type": "string"
+					},
+					"key": {
+						"type": "string"
+					},
+					"expiresAt": {
+						"anyOf": [
+							{
+								"type": "string",
+								"format": "date-time"
+							},
+							{
+								"type": "string"
+							}
+						]
+					}
+				},
+				"required": [
+					"url",
+					"key",
+					"expiresAt"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
 		"securitySchemes": {}
 	},
 	"info": {
@@ -58,6 +87,75 @@
 						"required": true,
 						"schema": {
 							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/media/upload": {
+			"post": {
+				"operationId": "Upload",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"multipart/form-data": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"file": {
+										"type": "string",
+										"format": "binary"
+									},
+									"key": {
+										"type": "string"
+									}
+								},
+								"required": [
+									"file",
+									"key"
+								]
+							}
+						}
+					}
+				}
+			}
+		},
+		"/media/{id}/url": {
+			"get": {
+				"operationId": "GetPresignedUrlById",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GetMediaUrlByIdQueryResponse"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
 						}
 					}
 				]

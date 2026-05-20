@@ -2,6 +2,17 @@
   "entryFile": "src/entry/api/app.ts",
   "noImplicitAdditionalProperties": "throw-on-extras",
   "controllerPathGlobs": ["src/entry/api/controllers/**/*.controller.ts"],
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@controller/*": ["entry/api/controllers/*"],
+      "@domain/*": ["core/domain/*"],
+      "@entities/*": ["core/entities/*"],
+      "@repositories/*": ["core/repositories/*"],
+      "@infra/*": ["infra/*"],
+      "@shared/*": ["shared/*"]
+    }
+  },
   "spec": {
     "outputDirectory": "./",
     "specVersion": 3,
