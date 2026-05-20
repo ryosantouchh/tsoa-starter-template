@@ -1,7 +1,7 @@
 namespace: ""
 environment: ""
 image:
-  repository: ryosantouchh/api-app
+  repository: ryosantouchh/tsoa-poc-api-app
   tag: latest
   pullPolicy: IfNotPresent
 replicas: 1

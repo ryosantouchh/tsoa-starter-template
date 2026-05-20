@@ -6,6 +6,7 @@ api-app:
   namespace: api-app-local-namespace
   environment: development
   image:
+    repository: ryosantouchh/tsoa-poc-api-app
     tag: dev
     pullPolicy: Always
   ingress:

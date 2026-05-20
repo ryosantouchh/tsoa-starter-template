@@ -1,4 +1,5 @@
 import "reflect-metadata";
+import 'module-alias/register';
 import "dotenv/config";
 import express, { json, urlencoded } from "express";
 import { RegisterRoutes } from "./routes";

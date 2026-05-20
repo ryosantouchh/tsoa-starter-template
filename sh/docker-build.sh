@@ -2,7 +2,8 @@
 
 build() {
   echo "Build Docker Image..."
-  docker build -t ryosantouchh/api-app:dev -f ./docker/Dockerfile .
+  docker build --no-cache -t ryosantouchh/tsoa-poc-api-app:dev -f ./docker/Dockerfile .
+  docker push ryosantouchh/tsoa-poc-api-app:dev
 }
 
 build
