@@ -12,6 +12,9 @@ spec:
     metadata:
       labels:
         app: {{ .Release.Name }}-api-app
+      annotations:
+        checksum/secret: {{ include (print $.Template.BasePath "/02-secret.yaml") . | sha256sum }}
+        checksum/config: {{ include (print $.Template.BasePath "/01-configmap.yaml") . | sha256sum }}
     spec:
       securityContext:
         runAsNonRoot: true

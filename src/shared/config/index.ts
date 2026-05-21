@@ -1,1 +1,1 @@
-export { RUSTFS_BUCKET, rustfsClient } from './rustfs.config'
+export { RUSTFS_BUCKET, rustfsClient, rustfsPresignClient } from './rustfs.config'

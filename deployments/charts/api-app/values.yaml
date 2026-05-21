@@ -15,7 +15,7 @@ resources:
     cpu: "250m"
 ingress:
   enabled: false
-  className: nginx
+  className: traefik
   host: ""
 config:
   NODE_ENV: ""
@@ -27,6 +27,8 @@ secret:
   databaseHost: ""
   databasePort: ""
   databaseName: ""
+  s3Bucket: ""
   s3Endpoint: ""
+  s3EndpointExternal: ""
   s3AccessKey: ""
   s3SecretKey: ""

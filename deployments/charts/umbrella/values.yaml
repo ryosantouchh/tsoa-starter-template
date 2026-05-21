@@ -80,3 +80,7 @@ rustfs:
   secret:
     accessKey: ""
     secretKey: ""
+  ingress:
+    enabled: false
+    className: traefik
+    host: ""

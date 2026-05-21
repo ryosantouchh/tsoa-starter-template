@@ -14,7 +14,7 @@
     }
   },
   "spec": {
-    "outputDirectory": "./",
+    "outputDirectory": "./src",
     "specVersion": 3,
     "basePath": "/api"
   },

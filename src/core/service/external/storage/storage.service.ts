@@ -2,13 +2,14 @@ import { Readable } from "stream";
 import { singleton } from "tsyringe";
 import { GetObjectCommand, PutObjectCommand } from "@aws-sdk/client-s3";
 
-import { RUSTFS_BUCKET, rustfsClient } from "@shared/config";
+import { RUSTFS_BUCKET, rustfsClient, rustfsPresignClient } from "@shared/config";
 import { StorageServiceGetPresignedUrl, StorageServiceUploadResult } from "./storage.types";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 
 @singleton()
 export class StorageService {
   private client = rustfsClient;
+  private presignedClient = rustfsPresignClient;
   private defaultBucket = RUSTFS_BUCKET;
 
   async upload({
@@ -54,7 +55,7 @@ export class StorageService {
     // const expiresIn = options.expiresInSeconds ?? 3600;
     const expiresIn = 3600;
     const command = new GetObjectCommand({ Bucket: this.defaultBucket, Key: key });
-    const url = await getSignedUrl(this.client, command, { expiresIn });
+    const url = await getSignedUrl(this.presignedClient, command, { expiresIn });
     return {
       url,
       key,

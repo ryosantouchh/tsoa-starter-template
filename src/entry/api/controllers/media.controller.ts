@@ -43,7 +43,7 @@ export class MediaController extends Controller {
     );
   }
 
-  @Get(":id/url")
+  @Get("{id}/url")
   async getPresignedUrlById(
     @Path() id: number,
   ): Promise<GetMediaUrlByIdQueryResponse> {

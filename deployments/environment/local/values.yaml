@@ -11,7 +11,8 @@ api-app:
     pullPolicy: Always
   ingress:
     enabled: true
-    host: api.localhost
+    className: traefik
+    host: api.quantlab
   config:
     NODE_ENV: development
 
@@ -20,3 +21,7 @@ postgres:
 
 rustfs:
   namespace: api-app-local-namespace
+  ingress:
+    enabled: true
+    className: traefik
+    host: s3.quantlab

@@ -4,7 +4,7 @@ import "dotenv/config";
 import express, { json, urlencoded } from "express";
 import { RegisterRoutes } from "./routes";
 import swaggerUi from "swagger-ui-express";
-import swaggerDocument from "../../../swagger.json";
+import swaggerDocument from "../../swagger.json";
 
 const app = express();
 

@@ -5,6 +5,7 @@
     "build",
     "dist",
     "node_modules",
-    "./src/entry/api/routes.ts"
+    "./src/entry/api/routes.ts",
+    "./src/swagger.json"
   ]
 }

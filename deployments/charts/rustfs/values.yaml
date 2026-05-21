@@ -17,6 +17,10 @@ persistence:
   enabled: true
   size: 5Gi
   storageClass: ""
+ingress:
+  enabled: false
+  className: traefik
+  host: ""
 secret:
   accessKey: ""
   secretKey: ""
