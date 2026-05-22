@@ -20,6 +20,7 @@ apiApp:
     enabled: true
     className: nginx
     host: ""
+  affinity: {}
   config:
     NODE_ENV: ""
     PORT: "3000"

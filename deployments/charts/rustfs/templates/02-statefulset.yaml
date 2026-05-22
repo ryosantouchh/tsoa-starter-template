@@ -4,7 +4,7 @@ metadata:
   name: {{ .Release.Name }}-rustfs
   namespace: {{ .Values.namespace }}
 spec:
-  serviceName: {{ .Release.Name }}-rustfs-svc
+  serviceName: {{ .Release.Name }}-rustfs-headless
   replicas: 1
   selector:
     matchLabels:
@@ -15,9 +15,13 @@ spec:
         app: {{ .Release.Name }}-rustfs
     spec:
       terminationGracePeriodSeconds: 30
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       containers:
         - name: rustfs
-          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag | default "latest" }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - containerPort: {{ .Values.port }}
@@ -69,6 +73,6 @@ spec:
         resources:
           requests:
             storage: {{ .Values.persistence.size }}
-        {{- if .Values.persistence.storageClass }}
+        {{- if and .Values.persistence.storageClass (ne .Values.persistence.storageClass "") }}
         storageClassName: {{ .Values.persistence.storageClass }}
         {{- end }}

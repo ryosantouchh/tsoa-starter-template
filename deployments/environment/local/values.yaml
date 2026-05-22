@@ -13,6 +13,15 @@ api-app:
     enabled: true
     className: traefik
     host: api.quantlab
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: kubernetes.io/hostname
+                operator: In
+                values:
+                  - quantlab
   config:
     NODE_ENV: development
 

@@ -1,11 +1,19 @@
 namespace: ""
 environment: ""
+
 image:
   repository: rustfs/rustfs
   tag: latest
   pullPolicy: IfNotPresent
+
 port: 9000
 consolePort: 9001
+
+ingress:
+  enabled: false
+  className: traefik
+  host: ""
+
 resources:
   requests:
     memory: "128Mi"
@@ -13,14 +21,14 @@ resources:
   limits:
     memory: "256Mi"
     cpu: "250m"
+
+affinity: {}
+
 persistence:
   enabled: true
   size: 5Gi
   storageClass: ""
-ingress:
-  enabled: false
-  className: traefik
-  host: ""
+
 secret:
   accessKey: ""
   secretKey: ""
